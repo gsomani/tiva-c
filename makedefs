@@ -37,37 +37,12 @@
 #
 #******************************************************************************
 
-#******************************************************************************
-#
-# Get the operating system name.  If this is Cygwin, the .d files will be
-# munged to convert c: into /cygdrive/c so that "make" will be happy with the
-# auto-generated dependencies.
-#
-#******************************************************************************
-os:=${shell uname -s}
-
-#******************************************************************************
-#
-# The compiler to be used.
-#
-#******************************************************************************
-ifndef COMPILER
 COMPILER=gcc
-endif
-
-#******************************************************************************
-#
-# Definitions for using GCC.
-#
-#******************************************************************************
-ifeq (${COMPILER}, gcc)
-
 #
 # Get the prefix for the tools to use.  Use arm-stellaris-eabi if it exists,
 # otherwise fall back to arm-none-eabi.
 #
-PREFIX:=${shell type arm-stellaris-eabi-gcc > /dev/null 2>&1 && \
-         echo arm-stellaris-eabi || echo arm-none-eabi}
+PREFIX:=arm-none-eabi
 
 #
 # The command for calling the compiler.
@@ -150,7 +125,7 @@ OBJCOPY=${PREFIX}-objcopy
 # variable is set.
 #
 ifdef DEBUG
-CFLAGS+=-g -D DEBUG -O0
+CFLAGS+=-g -D DEBUG -O0 --save-temps
 else
 CFLAGS+=-Os
 endif
@@ -241,5 +216,3 @@ ${COMPILER}${SUFFIX}/%.axf:
 	      ${LDFLAGS} -o ${@} $(filter %.o %.a, ${^})                      \
 	      '${LIBM}' '${LIBC}' '${LIBGCC}'
 	@${OBJCOPY} -O binary ${@} ${@:.axf=.bin}
-endif
-

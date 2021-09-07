@@ -70,40 +70,13 @@ clean:
 ${COMPILER}:
 	@mkdir -p ${COMPILER}
 
+CFILES = $(wildcard *.c)
+OBJECTS = $(CFILES:%.c=${COMPILER}/%.o)
+
 #
 # Rules for building the driver library.
 #
-${COMPILER}/libdriver.a: ${COMPILER}/adc.o
-${COMPILER}/libdriver.a: ${COMPILER}/aes.o
-${COMPILER}/libdriver.a: ${COMPILER}/can.o
-${COMPILER}/libdriver.a: ${COMPILER}/comp.o
-${COMPILER}/libdriver.a: ${COMPILER}/cpu.o
-${COMPILER}/libdriver.a: ${COMPILER}/crc.o
-${COMPILER}/libdriver.a: ${COMPILER}/des.o
-${COMPILER}/libdriver.a: ${COMPILER}/eeprom.o
-${COMPILER}/libdriver.a: ${COMPILER}/emac.o
-${COMPILER}/libdriver.a: ${COMPILER}/epi.o
-${COMPILER}/libdriver.a: ${COMPILER}/flash.o
-${COMPILER}/libdriver.a: ${COMPILER}/fpu.o
-${COMPILER}/libdriver.a: ${COMPILER}/gpio.o
-${COMPILER}/libdriver.a: ${COMPILER}/hibernate.o
-${COMPILER}/libdriver.a: ${COMPILER}/i2c.o
-${COMPILER}/libdriver.a: ${COMPILER}/interrupt.o
-${COMPILER}/libdriver.a: ${COMPILER}/lcd.o
-${COMPILER}/libdriver.a: ${COMPILER}/mpu.o
-${COMPILER}/libdriver.a: ${COMPILER}/pwm.o
-${COMPILER}/libdriver.a: ${COMPILER}/qei.o
-${COMPILER}/libdriver.a: ${COMPILER}/shamd5.o
-${COMPILER}/libdriver.a: ${COMPILER}/ssi.o
-${COMPILER}/libdriver.a: ${COMPILER}/sw_crc.o
-${COMPILER}/libdriver.a: ${COMPILER}/sysctl.o
-${COMPILER}/libdriver.a: ${COMPILER}/sysexc.o
-${COMPILER}/libdriver.a: ${COMPILER}/systick.o
-${COMPILER}/libdriver.a: ${COMPILER}/timer.o
-${COMPILER}/libdriver.a: ${COMPILER}/uart.o
-${COMPILER}/libdriver.a: ${COMPILER}/udma.o
-${COMPILER}/libdriver.a: ${COMPILER}/usb.o
-${COMPILER}/libdriver.a: ${COMPILER}/watchdog.o
+${COMPILER}/libdriver.a: $(OBJECTS)
 
 #
 # Include the automatically generated dependency files.

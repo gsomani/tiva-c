@@ -80,7 +80,7 @@ ${COMPILER}:
 #
 ${COMPILER}/freertos_demo.axf: ${COMPILER}/buttons.o
 ${COMPILER}/freertos_demo.axf: ${COMPILER}/freertos_demo.o
-${COMPILER}/freertos_demo.axf: ${COMPILER}/heap_2.o
+${COMPILER}/freertos_demo.axf: ${COMPILER}/heap_4.o
 ${COMPILER}/freertos_demo.axf: ${COMPILER}/led_task.o
 ${COMPILER}/freertos_demo.axf: ${COMPILER}/list.o
 ${COMPILER}/freertos_demo.axf: ${COMPILER}/port.o

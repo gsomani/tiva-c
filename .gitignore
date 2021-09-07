@@ -1,2 +1,15 @@
 *.o
 *.d
+*.bin
+*.axf
+*.sct
+*.uvopt
+*.icf
+*.ewd
+*.cmd
+*ccs
+*gcc
+*ewarm
+*rvmndk
+
+
